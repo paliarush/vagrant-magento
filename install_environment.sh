@@ -5,6 +5,9 @@ set -ex
 
 apt-get update
 
+# get arguments as an array
+args=("$@")
+
 # Determine external IP address
 set +x
 IP=`ifconfig eth1 | grep inet | awk '{print $2}' | sed 's/addr://'`
@@ -29,9 +32,11 @@ a2enmod rewrite
 sed -i 's/www-data/vagrant/g' /etc/apache2/envvars
 
 # Enable Magento virtual host
+magento_dir=${args[0]}
 apache_config="/etc/apache2/sites-available/magento2.conf"
 cp /vagrant/magento2.vhost.conf  ${apache_config}
 sed -i "s/<host>/${HOST}/g" ${apache_config}
+sed -i "s|<magento_dir>|${magento_dir}|g" ${apache_config}
 a2ensite magento2.conf
 
 # Disable default virtual host

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# get arguments as an array
+args=("$@")
+
 # vagrant provision --provision-with install_magento
 
 # Enable trace printing and exit on the first error
@@ -21,7 +24,7 @@ if [ -z ${HOST} ]; then
     set -x
 fi
 
-magento_dir="/var/www/magento2ce"
+magento_dir=${args[0]}
 cd ${magento_dir}
 
 # Clear cache
