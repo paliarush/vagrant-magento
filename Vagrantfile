@@ -24,7 +24,7 @@ magento_ip_address = get_variable_value('magento_ip_address')
 
 VAGRANT_API_VERSION = 2
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
-    config.vm.box = "ubuntu/trusty64"
+    config.vm.box = "centos/7"
 
     config.vm.provider "virtualbox" do |vb|
         vb.memory = get_variable_value('guest_ram') # Default is 2Gb, around 3Gb is necessary to run functional tests
@@ -47,8 +47,8 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
         guest_magento_dir,
         magento_host_name
     ]
-    config.vm.provision "install_environment", type: "shell" do |s|
-        s.path = "scripts/provision/install_environment.sh"
+    config.vm.provision "install_centos7_env", type: "shell" do |s|
+        s.path = "scripts/provision/install_centos7_env.sh"
         s.args = shell_script_args
     end
 
