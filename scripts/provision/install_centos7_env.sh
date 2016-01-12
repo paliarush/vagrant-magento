@@ -9,13 +9,17 @@ magento_host_name=$3
 
 vagrant_dir="/vagrant"
 
+# add local user
+#useradd -m -s /bin/bash -G wheel centos
+#echo -e "123123q\n123123q" | passwd centos
+
 # connect epel repo
-yum install -y epel-release
+yum install -y epel-release yum-utils
 # connect remi repo and enable it
-rpm -i http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+rpm -iU --force http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi remi-php70
 # connect mysql repo
-rpm -i https://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+rpm -iU --force https://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
 
 # update vm
 yum update -y
@@ -56,7 +60,11 @@ systemctl restart httpd
 
 # Setup MySQL
 yum install -y mysql-community-server mysql-community-client
+#sed -i "s/--init-file=\"\$initfile\"//g" /usr/bin/mysqld_pre_systemd
+mv /usr/lib64/mysql/plugin/validate_password.so /tmp
 systemctl restart mysqld
+MYSQLPASS=`sudo grep 'temporary password' /var/log/mysqld.log | awk 'END {print $NF}'`
+mysqladmin password '' -p$MYSQLPASS
 
 # Setup Composer
 if [ ! -f /usr/local/bin/composer ]; then

@@ -24,7 +24,8 @@ magento_ip_address = get_variable_value('magento_ip_address')
 
 VAGRANT_API_VERSION = 2
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
-    config.vm.box = "centos/7"
+    #config.vm.box = "centos/7"
+    config.vm.box = "puppetlabs/centos-7.2-64-nocm"
 
     config.vm.provider "virtualbox" do |vb|
         vb.memory = get_variable_value('guest_ram') # Default is 2Gb, around 3Gb is necessary to run functional tests
@@ -68,6 +69,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     config.hostmanager.include_offline = true
     config.vm.define magento_host_name do |node|
         node.vm.hostname = magento_host_name
+	node.vm.network "forwarded_port", guest: 80, host: 8080
         node.vm.network :private_network, ip: magento_ip_address
     end
 end

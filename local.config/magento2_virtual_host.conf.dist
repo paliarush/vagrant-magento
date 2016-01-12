@@ -6,6 +6,6 @@
         AllowOverride All
         Require all granted
     </Directory>
-    ErrorLog "${APACHE_LOG_DIR}/error.log"
-    CustomLog "${APACHE_LOG_DIR}/access.log" common
+    ErrorLog "/var/log/httpd/mage-error.log"
+    CustomLog "/var/log/httpd/mage-access.log" common
 </VirtualHost>
