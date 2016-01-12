@@ -60,11 +60,9 @@ systemctl restart httpd
 
 # Setup MySQL
 yum install -y mysql-community-server mysql-community-client
-#sed -i "s/--init-file=\"\$initfile\"//g" /usr/bin/mysqld_pre_systemd
-mv /usr/lib64/mysql/plugin/validate_password.so /tmp
+sed -i "s/--initialize/--initialize-insecure/g" /usr/bin/mysqld_pre_systemd
+sed -i "s/--init-file=\"\$initfile\"//g" /usr/bin/mysqld_pre_systemd
 systemctl restart mysqld
-MYSQLPASS=`sudo grep 'temporary password' /var/log/mysqld.log | awk 'END {print $NF}'`
-mysqladmin password '' -p$MYSQLPASS
 
 # Setup Composer
 if [ ! -f /usr/local/bin/composer ]; then
