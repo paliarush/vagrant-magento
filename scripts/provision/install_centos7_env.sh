@@ -9,6 +9,10 @@ magento_host_name=$3
 
 vagrant_dir="/vagrant"
 
+# disable firewall
+systemctl stop firewalld 
+systemctl disable firewalld 
+
 # add local user
 #useradd -m -s /bin/bash -G wheel centos
 #echo -e "123123q\n123123q" | passwd centos
@@ -19,7 +23,7 @@ yum install -y epel-release yum-utils
 rpm -iU --force http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi remi-php70
 # connect mysql repo
-rpm -iU --force https://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+rpm -iU https://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
 
 # update vm
 yum update -y
@@ -59,10 +63,12 @@ sed -i "s|<guest_magento_dir>|${guest_magento_dir}|g" ${enabled_virtual_host_con
 systemctl restart httpd
 
 # Setup MySQL
-yum install -y mysql-community-server mysql-community-client
+yum -y install mysql-community-server mysql-community-client
+systemctl enable mysqld
 sed -i "s/--initialize/--initialize-insecure/g" /usr/bin/mysqld_pre_systemd
 sed -i "s/--init-file=\"\$initfile\"//g" /usr/bin/mysqld_pre_systemd
-systemctl restart mysqld
+systemctl restart mysqld 
+
 
 # Setup Composer
 if [ ! -f /usr/local/bin/composer ]; then
