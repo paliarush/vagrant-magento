@@ -10,7 +10,6 @@
    * [Installation steps](#installation-steps)
    * [Default credentials and settings](#default-credentials-and-settings)
    * [Getting updates and fixes](#getting-updates-and-fixes)
-   * [GitHub limitations](#github-limitations)
  * [Day-to-day development scenarios](#day-to-day-development-scenarios)
    * [Reinstall Magento](#reinstall-magento)
    * [Clear magento cache](#clear-magento-cache)
@@ -69,8 +68,8 @@ Software listed below should be available in [PATH](https://en.wikipedia.org/wik
    git clone git@github.com:paliarush/magento2-vagrant-for-developers.git vagrant-magento
    ```
  
- 1. Copy [etc/composer/auth.json.dist](etc/composer/auth.json.dist) to `etc/composer/auth.json` and specify your [GitHub OAuth token](https://github.com/settings/tokens) there. See [API rate limit and OAuth tokens](https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens) for more information
- 
+ 1. Copy [etc/composer/auth.json.dist](etc/composer/auth.json.dist) to `etc/composer/auth.json`
+
  1. Optionally, copy [etc/config.yaml.dist](etc/config.yaml.dist) as `etc/config.yaml` and make necessary customizations
  
  1. Initialize project, configure environment, install Magento, configure PHPStorm project:
@@ -116,16 +115,6 @@ Upon a successful installation, you'll see the location and URL of the newly-ins
 Current vagrant project follows [semantic versioning](http://semver.org/spec/v2.0.0.html) so feel free to pull the latest features and fixes, they will not break your project.
 For example your current branch is `2.0`, then it will be safe to pull any changes from `origin/2.0`. However branch `3.0` will contain changes backward incompatible with `2.0`.
 Note, that semantic versioning is only used for `x.0` branches (not for `develop`).
-
-### GitHub limitations
-
-Be aware that you may encounter GitHub limits on the number of downloads (used by Composer to download Magento dependencies).
-
-These limits may significantly slow down the installation since all of the libraries will be cloned from GitHub repositories instead of downloaded as ZIP archives. In the worst case, these limitations may even terminate the installation.
-
-If you have a GitHub account, you can bypass these limitations by using an OAuth token in the Composer configuration. See [API rate limit and OAuth tokens](https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens) for more information.
-
-For the Vagrant configuration you may specify your token in `etc/github.oauth.token` file after cloning the repository. The file is a basic text file and is ignored by Git, so you'll need to create it yourself. Simply write your OAuth token in this file making sure to avoid any empty spaces, and it will be read during deployment.
 
 ## Day-to-day development scenarios
     
