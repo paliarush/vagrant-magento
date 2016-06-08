@@ -6,7 +6,7 @@ vagrant_dir=$(cd "$(dirname "$0")/../.."; pwd)
 set -ex
 
 # Find path to available PHP
-if [ -f ${vagrant_dir}/lib/php/php.exe ]; then
+if [[ -f ${vagrant_dir}/lib/php/php.exe ]]; then
     php_executable="${vagrant_dir}/lib/php/php"
 else
     php_executable="php"
