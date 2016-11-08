@@ -2,3 +2,4 @@
 /.idea
 /log/debug.log
 /scripts/.current_nesting_level
+.DS_Store

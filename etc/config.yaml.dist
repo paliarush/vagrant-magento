@@ -13,11 +13,11 @@ repository_url:
   # Current section used only if 'checkout_source_from' is set to 'git'
 
   # [To apply changes: init_project.sh -fc]
-  # git@github.com:magento/magento2ce.git OR custom one
+  # git@github.com:magento/magento2ce.git OR custom one. Use '::' to specify a specific branch, e.g: git@github.com:magento/magento2.git::2.1
   ce: "git@github.com:magento/magento2.git"
   # git@github.com:magento/magento2ee.git OR custom one
   ee: ""
-  # can be replaced with custom repository
+  # can be replaced with custom repository. Use '::' to specify a specific branch, e.g: git@github.com:magento/magento2-sample-data.git::2.1-develop
   ce_sample_data: "git@github.com:magento/magento2-sample-data.git"
   # git@github.com:magento/magento2-sample-data-ee.git OR custom one
   ee_sample_data: ""
