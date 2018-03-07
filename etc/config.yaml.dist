@@ -6,6 +6,10 @@ composer_project:
 
   # [To apply changes: init_project.sh -fc]
   name: "magento/project-community-edition"
+
+  # Blank version defaults to latest
+  version: ""
+
   # Make sure to specify valid keys for this repository in etc/composer/auth.json
   url: "https://repo.magento.com"
 
