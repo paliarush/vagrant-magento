@@ -358,6 +358,7 @@ Note: See [Working with npm](https://www.npmjs.com/package/n#working-with-npm) i
 
 ### FAQ
 
+ 1. Upgrade to PHP 7.1 can be done as described [here](https://gist.github.com/paliarush/6d88f3267de3bac636956f4be6bb3cd8#file-steps-to-upgrade-environment-to-php-7-1-md). Keep in mind that this is a temporary hack until proper support is implemented in the box
  1. To debug any CLI script in current Vagrant project, set `debug:vagrant_project` option in [config.yaml](etc/config.yaml.dist) to `1`
  1. Is Windows 10 supported? Yes, but you may face the same issue as described [here](https://github.com/paliarush/magento2-vagrant-for-developers/issues/36). Also Virtual box may not work on Windows 10 in headless mode, see how to [enable GUI mode](https://www.vagrantup.com/docs/virtualbox/configuration.html)
  1. ![](docs/images/linux-icon.png)![](docs/images/osx-icon.png) On OSX and \*nix hosts NFS will be used by default to sync your project files with guest. On some hosts Vagrant cannot configure NFS properly, in this case it is possible to deploy project without NFS by setting `use_nfs` option in [config.yaml](etc/config.yaml.dist) to `0` <br />
