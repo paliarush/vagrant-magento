@@ -30,6 +30,7 @@ repository_url_ce="$(bash "${vagrant_dir}/scripts/get_config_value.sh" "reposito
 repository_url_ee="$(bash "${vagrant_dir}/scripts/get_config_value.sh" "repository_url_ee")"
 composer_project_name="$(bash "${vagrant_dir}/scripts/get_config_value.sh" "composer_project_name")"
 composer_project_url="$(bash "${vagrant_dir}/scripts/get_config_value.sh" "composer_project_url")"
+composer_project_version="$(bash "${vagrant_dir}/scripts/get_config_value.sh" "composer_project_version")"
 checkout_source_from="$(bash "${vagrant_dir}/scripts/get_config_value.sh" "checkout_source_from")"
 
 function checkoutSourceCodeFromGit()
@@ -126,7 +127,7 @@ function composerCreateProject()
 {
     if [[ ! -d ${magento_ce_dir} ]]; then
         status "Downloading Magento codebase using 'composer create-project'"
-        bash "${vagrant_dir}/scripts/host/composer.sh" create-project ${composer_project_name} "${magento_ce_dir}" --repository-url=${composer_project_url}
+        bash "${vagrant_dir}/scripts/host/composer.sh" create-project ${composer_project_name} "${magento_ce_dir}" "${composer_project_version}" --repository-url=${composer_project_url}
 
         # TODO: Workaround for Magento 2.2+ until PHP is upgraded to 7.1 on the guest
         cd "${magento_ce_dir}"
