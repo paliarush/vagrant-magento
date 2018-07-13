@@ -4,6 +4,7 @@
 Vagrant.require_version ">= 1.8"
 
 require 'yaml'
+require './deep_merge'
 
 module OS
     def OS.is_windows
