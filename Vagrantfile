@@ -4,24 +4,19 @@
 Vagrant.require_version ">= 1.8"
 
 require 'yaml'
-require 'vagrant/util/deep_merge'
 
-module OS
-    def OS.is_windows
-        (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
-    end
-end
+include Vagrant::Util
 
 module Config
     # Load and override config settings
-    def Config.load
+    def self.load
         local_config_dir = 'etc'
         config_dist_file = local_config_dir + '/config.yaml.dist'
         config_file = local_config_dir + '/config.yaml'
 
         config_data_dist = YAML.load_file(config_dist_file)
         config_data = File.exists?(config_file) ? YAML.load_file(config_file) : {}
-        return Vagrant::Util::DeepMerge.deep_merge(config_data_dist, config_data)
+        return DeepMerge.deep_merge(config_data_dist, config_data)
     end
 end
 
@@ -34,13 +29,12 @@ guest_memory = config_data['guest']['memory']
 guest_cpus = config_data['guest']['cpus']
 
 # NFS will be used for *nix and OSX hosts, if not disabled explicitly in config
-use_nfs_for_synced_folders = !OS.is_windows && (config_data['guest']['use_nfs'] == 1)
+use_nfs_for_synced_folders = !Platform.windows? && (config_data['guest']['use_nfs'] == 1)
 
 host_vagrant_dir = Dir.pwd + ''
 host_magento_dir = host_vagrant_dir + '/magento2ce'
 
-VAGRANT_API_VERSION = 2
-Vagrant.configure(VAGRANT_API_VERSION) do |config|
+Vagrant.configure(vagrant_config_version = "2") do |config|
     config.vm.box = "paliarush/magento2.ubuntu"
     config.vm.box_version = "~> 1.1"
 
@@ -72,7 +66,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
         magento_host_name,                            #3
         config_data['environment']['use_php7'] || 0,  #4 TODO: Remove legacy parameter, replaced with php_version
         host_magento_dir,                             #5
-        OS.is_windows ? "1" : "0",                    #6
+        Platform.windows? ? "1" : "0",                    #6
         host_vagrant_dir,                             #7
         config_data['environment']['php_version']     #8
     ]
