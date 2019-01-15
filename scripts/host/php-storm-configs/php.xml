@@ -7,12 +7,12 @@
   </component>
   <component name="MessDetector">
     <phpmd_settings>
-      <MessDetectorConfiguration tool_path="$USER_HOME$/PhpstormProjects/magento2-vagrant/magento2ce/vendor/phpmd/phpmd/src/bin/phpmd" />
+      <MessDetectorConfiguration tool_path="$PROJECT_DIR$/magento2ce/vendor/phpmd/phpmd/src/bin/phpmd" />
     </phpmd_settings>
   </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <PhpCSConfiguration standards="MySource;PEAR;PHPCS;PSR1;PSR2;Squiz;Zend" tool_path="$USER_HOME$/PhpstormProjects/magento2-vagrant/magento2ce/vendor/squizlabs/php_codesniffer/scripts/phpcs" />
+      <PhpCSConfiguration standards="MySource;PEAR;PHPCS;PSR1;PSR2;Squiz;Zend" tool_path="$PROJECT_DIR$/magento2ce/vendor/squizlabs/php_codesniffer/bin/phpcs" />
     </phpcs_settings>
   </component>
   <component name="PhpInterpreters">

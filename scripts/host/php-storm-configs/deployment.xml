@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="<host_name>"<auto_upload_attributes>>
+  <component name="PublishConfigData" serverName="<host_name>">
     <serverData>
       <paths name="<host_name>">
         <serverdata>
@@ -14,6 +14,5 @@
         </serverdata>
       </paths>
     </serverData>
-    <auto_upload_option>
   </component>
 </project>
