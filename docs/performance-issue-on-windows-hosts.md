@@ -9,7 +9,7 @@ Existing problem for Windows users
 ----------------------------------
 
 Developers, who use Magento installed on Vagrant for daily development in Windows environment, complaint about Magento performance issues.
-The main reason for performance degradation is that default synchronization (Virtual box shared folders) is used for project files synchronization on host and on guest OSs. **PHP requests all source files from the host,** also lost of files are created by the Magento instance on the fly in non-production mode, which are immediately synchronized with the host.
+The main reason for performance degradation is that default synchronization (Virtual box shared folders) is used for project files synchronization on host and on guest OSs. **PHP requests all source files from the host,** as well a lot of files are created by the Magento instance on the fly in non-production mode, which are immediately synchronized with the host.
 There are several other types of files synchronization available, but all of them have issues, which spoil developer experience:
 
  - SMB - on some machines does not work (various errors, unstable
